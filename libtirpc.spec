@@ -65,7 +65,6 @@ by almost 70 vendors on all major operating systems.  TS-RPC source code
 %package -n %{libname}
 Summary:	Old version of the Transport Independent RPC Library
 Group:		System/Libraries
-Requires:	libtirpc >= %{EVRD}
 
 %description -n	%{libname}
 This package contains an old version of the shared library for %{name}.
