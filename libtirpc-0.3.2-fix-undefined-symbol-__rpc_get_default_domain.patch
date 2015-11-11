@@ -1,0 +1,25 @@
+--- libtirpc-0.3.2/src/netname.c.omv~	2015-06-18 23:47:17.459790539 +0200
++++ libtirpc-0.3.2/src/netname.c	2015-06-18 23:50:39.928587717 +0200
+@@ -71,6 +71,22 @@
+ static char *OPSYS = "unix";
+ 
+ /*
++ * libtirpc (wrongfully) assumes this to be defined in libc -- this is the
++ * case only on BSD.
++ * This implementation seems to be ok...
++ */
++int __rpc_get_default_domain(char **d) {
++	char *domain = (char*)malloc(64);
++	int ret = getdomainname(domain, 64);
++	if(ret) {
++		free(domain);
++		domain = NULL;
++	}
++	*d = domain;
++	return ret;
++}
++
++/*
+  * Figure out my fully qualified network name
+  */
+ int

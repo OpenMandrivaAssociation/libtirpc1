@@ -1,0 +1,22 @@
+diff -Naur libtirpc-0.3.2/src/Makefile.am libtirpc-0.3.2.tpg/src/Makefile.am
+--- libtirpc-0.3.2/src/Makefile.am	2015-06-16 15:35:08.000000000 +0000
++++ libtirpc-0.3.2.tpg/src/Makefile.am	2015-06-17 17:54:28.435159463 +0000
+@@ -54,7 +54,7 @@
+         auth_time.c auth_des.c authdes_prot.c debug.c
+ 
+ ## XDR
+-libtirpc_la_SOURCES += xdr.c xdr_rec.c xdr_array.c xdr_float.c xdr_mem.c xdr_reference.c xdr_stdio.c
++libtirpc_la_SOURCES += xdr.c xdr_rec.c xdr_array.c xdr_float.c xdr_mem.c xdr_reference.c xdr_stdio.c xdr_sizeof.c
+ 
+ if SYMVERS
+     libtirpc_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libtirpc.map
+diff -Naur libtirpc-0.3.2/tirpc/rpc/xdr.h libtirpc-0.3.2.tpg/tirpc/rpc/xdr.h
+--- libtirpc-0.3.2/tirpc/rpc/xdr.h	2015-06-16 15:35:08.000000000 +0000
++++ libtirpc-0.3.2.tpg/tirpc/rpc/xdr.h	2015-06-17 17:55:33.736931664 +0000
+@@ -374,4 +374,6 @@
+ }
+ #endif
+ 
++extern u_long xdr_sizeof(xdrproc_t, void *);
++
+ #endif /* !_TIRPC_XDR_H */

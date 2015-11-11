@@ -1,0 +1,46 @@
+--- libtirpc-0.2.3/rpcgen/proto.h.bero	2013-04-18 12:56:25.550513524 +0200
++++ libtirpc-0.2.3/rpcgen/proto.h	2013-04-18 12:56:41.664312074 +0200
+@@ -55,7 +55,7 @@ void add_type(int len, const char *type)
+    so we define stuff for cross-rpcgen here to avoid conflicts with
+    $build's C library and $host's glibc.  */
+ 
+-#ifdef IS_IN_build
++#if 1 //def IS_IN_build
+ 
+ /* Disable translated messages when built for $build and used in
+    building glibc.  */
+--- libtirpc-0.2.3/rpcgen/rpc_main.c.bero	2013-04-18 12:54:26.790998222 +0200
++++ libtirpc-0.2.3/rpcgen/rpc_main.c	2013-04-18 12:56:24.063532114 +0200
+@@ -50,7 +50,8 @@
+ #include "rpc_scan.h"
+ #include "proto.h"
+ 
+-#include "../version.h"
++#define REPORT_BUGS_TO "http://bugs.openmandriva.org/"
++#define PKGVERSION "0.2.3"
+ #define PACKAGE _libc_intl_domainname
+ 
+ #define EXTEND	1		/* alias for TRUE */
+--- libtirpc-0.2.3/rpcgen/rpc_scan.c.bero	2013-04-18 12:56:49.736211161 +0200
++++ libtirpc-0.2.3/rpcgen/rpc_scan.c	2013-04-18 12:57:24.006782720 +0200
+@@ -38,10 +38,10 @@
+ #include <ctype.h>
+ #include <string.h>
+ #include <libintl.h>
++#define _(X) (X)
+ #include "rpc_scan.h"
+ #include "rpc_parse.h"
+ #include "rpc_util.h"
+-#include "proto.h"
+ 
+ #define startcomment(where) (where[0] == '/' && where[1] == '*')
+ #define endcomment(where) (where[-1] == '*' && where[0] == '/')
+--- libtirpc-0.2.3/rpcgen/Makefile.am.bero	2013-04-18 13:01:25.854759204 +0200
++++ libtirpc-0.2.3/rpcgen/Makefile.am	2013-04-18 13:01:36.702623587 +0200
+@@ -1,5 +1,5 @@
+ INCLUDES = -I$(top_srcdir)/tirpc -DPORTMAP -DINET6 -DVERSION="\"$(VERSION)\"" \
+-		-D_GNU_SOURCE -Wall -pipe  
++		-D_GNU_SOURCE -D_RPC_THREAD_SAFE_ -Wall -pipe  
+ COMPILE = $(CC_FOR_BUILD) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+ 	$(CPPFLAGS_FOR_BUILD) $(AM_CFLAGS) $(CFLAGS_FOR_BUILD)
+ LINK = $(CC_FOR_BUILD) $(AM_CFLAGS) $(CFLAGS_FOR_BUILD) $(AM_LDFLAGS) $(LDFLAGS_FOR_BUILD) -o $@

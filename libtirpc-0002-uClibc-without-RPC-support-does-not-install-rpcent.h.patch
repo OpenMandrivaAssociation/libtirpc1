@@ -1,0 +1,37 @@
+From c2e96bdc453334f10faf8db0eb06e41ab3ca4fe9 Mon Sep 17 00:00:00 2001
+From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Date: Sat, 23 Jun 2012 21:58:07 +0200
+Subject: [PATCH] uClibc without RPC support does not install rpcent.h
+
+Signed-off-by: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+---
+ tirpc/rpc/rpcent.h |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff -Naur libtirpc-0.3.0/tirpc/rpc/rpcent.h libtirpc-0.3.0.tpg/tirpc/rpc/rpcent.h
+--- libtirpc-0.3.0/tirpc/rpc/rpcent.h	2015-05-06 14:05:22.000000000 +0000
++++ libtirpc-0.3.0.tpg/tirpc/rpc/rpcent.h	2015-05-12 21:29:54.625462520 +0000
+@@ -48,8 +48,9 @@
+ extern "C" {
+ #endif
+ 
+-/* These are defined in /usr/include/rpc/netdb.h */
+-#if !defined(__GLIBC__)
++/* These are defined in /usr/include/rpc/netdb.h, unless we are using
++   the C library without RPC support. */
++#if defined(__UCLIBC__) && !defined(__UCLIBC_HAS_RPC__)
+ struct rpcent {
+ 	char	*r_name;	/* name of server for this rpc program */
+ 	char	**r_aliases;	/* alias list */
+@@ -60,10 +61,10 @@
+ extern struct rpcent *getrpcbyname(const char *);
+ extern struct rpcent *getrpcbynumber(int);
+ extern struct rpcent *getrpcent(void);
+-#endif
+ 
+ extern void setrpcent(int);
+ extern void endrpcent(void);
++#endif
+ #ifdef __cplusplus
+ }
+ #endif
