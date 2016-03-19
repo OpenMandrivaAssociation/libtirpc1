@@ -8,7 +8,7 @@
 Summary:	Old version of the Transport Independent RPC Library
 Name:		libtirpc1
 Version:	0.3.2
-Release:	5
+Release:	6
 License:	SISSL and BSD
 Group:		System/Libraries
 Url:		http://sourceforge.net/projects/libtirpc
