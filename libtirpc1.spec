@@ -81,10 +81,9 @@ install -m644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} tirpc/
 install -m644 %{SOURCE15} %{SOURCE16} tirpc/rpc/
 
 %build
-CONFIGURE_TOP="$PWD"
 export CFLAGS="%{optflags} -fPIC"
 
-%configure	\
+%configure \
 	--libdir=/%{_lib} \
 	--enable-shared \
 	--enable-static \
