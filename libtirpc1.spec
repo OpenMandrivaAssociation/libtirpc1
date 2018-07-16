@@ -43,13 +43,6 @@ BuildRequires:	pkgconfig
 BuildRequires:	autoconf
 BuildRequires:	automake
 
-%track
-prog %{name} = {
-	url = http://sourceforge.net/projects/libtirpc/files/libtirpc/
-	version = %{version}
-	regex = "Download libtirpc-(__VER__)\.tar\.bz2"
-}
-
 %description
 This package contains SunLib's implementation of transport-independent
 RPC (TI-RPC) documentation.  This library forms a piece of the base of 
