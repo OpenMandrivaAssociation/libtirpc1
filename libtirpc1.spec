@@ -67,7 +67,7 @@ in a future release.
 
 %prep
 %setup -qn libtirpc-%{version}
-%apply_patches
+%autopatch -p1
 autoreconf -fiv
 
 install -m644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} tirpc/rpcsvc/
