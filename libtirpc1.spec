@@ -11,7 +11,7 @@ Version:	0.3.2
 Release:	8
 License:	SISSL and BSD
 Group:		System/Libraries
-Url:		http://sourceforge.net/projects/libtirpc
+Url:		https://sourceforge.net/projects/libtirpc
 Source0:	http://downloads.sourceforge.net/libtirpc/libtirpc-%{version}.tar.bz2
 # Related headers that were removed from glibc
 Source10:	nis.h
